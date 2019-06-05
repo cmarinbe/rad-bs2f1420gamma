@@ -13,7 +13,7 @@ importOptions("$APPCONFIGOPTS/Gauss/Beam6500GeV-md100-2016-nu1.6.py")
 importOptions("$APPCONFIGOPTS/Gauss/EnableSpillover-25ns.py")
 importOptions("$APPCONFIGOPTS/Gauss/DataType-2016.py")
 importOptions("$APPCONFIGOPTS/Gauss/RICHRandomHits.py")
-importOptions("/exp/LHCb/marin/cmtuser/GaussDev_v49r12/Gen/DecFiles/options/13102601.py")
+importOptions("$DECFILESROOT/options/13102601.py")
 importOptions("$LBPYTHIA8ROOT/options/Pythia8.py")
 importOptions("$APPCONFIGOPTS/Gauss/G4PL_FTFP_BERT_EmNoCuts.py")
 

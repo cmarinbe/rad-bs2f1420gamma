@@ -50,7 +50,7 @@ train.float = nJobMax
 
 GaussWagon = LHCbTransform(name='Step 1: Gauss ', backend=Dirac())
 GaussApp = GaudiExec()
-GaussApp.directory = cmtpath + "/GausDev_" + Gauss_version
+GaussApp.directory = cmtpath + "/GaussDev_" + Gauss_version
 GaussApp.platform = Gauss_platform
 GaussApp.options = ["Gauss-Job.py"]
 GaussWagon.application = GaussApp
@@ -153,7 +153,7 @@ train.appendTransform(BrunelWagon)
 
 StripWagon = LHCbTransform(name='Step 5: Strip ', backend=Dirac())
 StripApp = GaudiExec()
-StripApp.directory = cmtpath + "/StripDev_" + Strip_version
+StripApp.directory = cmtpath + "/DaVinciDev_" + Strip_version
 StripApp.platform  = Strip_platform
 StripApp.options  = ["Strip-Job.py"]
 StripWagon.application = StripApp
