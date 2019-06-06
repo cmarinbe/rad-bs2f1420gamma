@@ -32,10 +32,10 @@ Turbo_platform = "x86_64-slc6-gcc48-opt"
 Strip_platform = "x86_64-slc6-gcc49-opt"
 
 # -- Task
-test = True
+test = False
 nJobMax = 100
-nsubjob = 1000 if not test else 2
-evtpersubjob = 500 if not test else 10
+nsubjob = 500 if not test else 2
+evtpersubjob = 200 if not test else 10
 
 # =============================================================================
 #  Main part
@@ -56,7 +56,7 @@ GaussApp.options = ["Gauss-Job.py"]
 GaussWagon.application = GaussApp
 
 # number of units to create for MC generation (mandatory when using no input file).
-GaussWagon.mc_num_units = 1
+GaussWagon.mc_num_units = 10 # number of Gauss jobs with nsubjob subjobs
 GaussWagon.splitter = GaussSplitter(numberOfJobs=nsubjob, eventsPerJob=evtpersubjob)
 GaussWagon.outputfiles = [
     DiracFile("*.sim"),
@@ -72,6 +72,7 @@ BooleApp.directory = cmtpath + "/BooleDev_" + Boole_version
 BooleApp.platform  = Boole_platform
 BooleApp.options  = ["Boole-Job.py"]
 BooleWagon.application = BooleApp
+BooleWagon.splitter = SplitByFiles(filesPerJob=10)
 
 dataBoole = TaskChainInput(include_file_mask=['\.sim$'], input_trf_id=GaussWagon.getID())
 BooleWagon.addInputData(dataBoole)
@@ -88,6 +89,7 @@ L0App.directory = cmtpath + "/MooreDev_" + L0_version
 L0App.platform  = L0_platform
 L0App.options  = ["L0-Job.py"]
 L0Wagon.application = L0App
+L0Wagon.splitter = SplitByFiles(filesPerJob=1)
 
 dataL0 = TaskChainInput(include_file_mask=['\.digi$'], input_trf_id=BooleWagon.getID())
 L0Wagon.addInputData(dataL0)
@@ -105,6 +107,7 @@ HLT1App.directory = cmtpath + "/MooreDev_" + HLT_version
 HLT1App.platform  = HLT_platform
 HLT1App.options  = ["HLT1-Job.py"]
 HLT1Wagon.application = HLT1App
+HLT1Wagon.splitter = SplitByFiles(filesPerJob=1)
 
 dataHLT1 = TaskChainInput(include_file_mask=['\.digi$'], input_trf_id=L0Wagon.getID())
 HLT1Wagon.addInputData(dataHLT1)
@@ -121,6 +124,7 @@ HLT2App.directory = cmtpath + "/MooreDev_" + HLT_version
 HLT2App.platform  = HLT_platform
 HLT2App.options  = ["HLT2-Job.py"]
 HLT2Wagon.application = HLT2App
+HLT2Wagon.splitter = SplitByFiles(filesPerJob=1)
 
 dataHLT2 = TaskChainInput(include_file_mask=['\.digi$'], input_trf_id=HLT1Wagon.getID())
 HLT2Wagon.addInputData(dataHLT2)
@@ -139,6 +143,7 @@ BrunelApp.directory = cmtpath + "/BrunelDev_" + Brunel_version
 BrunelApp.platform  = Brunel_platform
 BrunelApp.options  = ["Brunel-Job.py"]
 BrunelWagon.application = BrunelApp
+BrunelWagon.splitter = SplitByFiles(filesPerJob=1)
 
 dataBrunel = TaskChainInput(include_file_mask=['\.digi$'], input_trf_id=HLT2Wagon.getID())
 BrunelWagon.addInputData(dataBrunel)
@@ -157,6 +162,7 @@ StripApp.directory = cmtpath + "/DaVinciDev_" + Strip_version
 StripApp.platform  = Strip_platform
 StripApp.options  = ["Strip-Job.py"]
 StripWagon.application = StripApp
+StripWagon.splitter = SplitByFiles(filesPerJob=1)
 
 dataStrip = TaskChainInput(include_file_mask=['\.dst$'], input_trf_id=BrunelWagon.getID())
 StripWagon.addInputData(dataStrip)
