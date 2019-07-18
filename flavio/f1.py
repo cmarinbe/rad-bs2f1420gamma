@@ -110,7 +110,7 @@ for k, v in fits.items():
 for k, v in fits.items():
     obs_fastfits[k].make_measurement(threads=4)
 
-# Set in the list the observables you want for the global fit. Usually same as individual fits but if it is not the case you can change the label line 127.
+# Set in the list the observables you want for the global fit. Usually same as individual fits but if it is not the case you can change the label line 130.
 global_fastfit = fastfit_obs('C7-C7p fit global', [Acp, Ad, S, BR])
 
 global_fastfit.make_measurement(threads=4)
