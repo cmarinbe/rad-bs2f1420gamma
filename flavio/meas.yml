@@ -1,0 +1,6 @@
+Mesure:
+  values:
+    BR(Bs->f1gamma): 3.2 +- 0.5 +- 0.3 +- 0.6 e-5
+    S_f1gamma: 0.0005 +- 0.3 +- 0.11
+    ACP(Bs->f1gamma): 0.0084 +- 0.29 +- 0.11
+    ADeltaGamma(Bs->f1gamma): -0.034 +0.37 -0.41 +- 0.17
